@@ -333,8 +333,8 @@ int main(){
                 case 4: //voltar
                 break;
                 case 5: //Conferir
-                    char c;
                     conferirJogo(jogo, jogoResolvido, start);
+                    char c;
                     setbuf(stdin,NULL);
                     scanf("%c" , &c);
                 break;
