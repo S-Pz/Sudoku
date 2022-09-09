@@ -17,8 +17,6 @@ int menu(){
     }
     return opcao;
 }
-
-
 void lerArquivo(FILE * table, int jogo[9][9], int jogoResolvido[9][9]){
 
     char c;
@@ -46,11 +44,10 @@ void lerArquivo(FILE * table, int jogo[9][9], int jogoResolvido[9][9]){
         }
         fscanf(table,"%c", &c);
     }
-
 }
-
 int menuJogada(int jogo[9][9]){
     int opcao;
+
     printf("1-Adicionar Jogada\n");
     printf("2-Remover Jogada\n");
     printf("3-Salvar Jogo\n");
@@ -65,14 +62,15 @@ int menuJogada(int jogo[9][9]){
         printf("OPCAO INVALIDA\n");
         opcao = menuJogada(jogo);
     }
-
     return opcao;
 }
 
 void removerJogada(int jogo[9][9], int mascara[9][9]){
     int linha,coluna;
+
     printf("Digite a linha coluna para excluir: ");
     scanf("%d %d", &linha, &coluna);
+
     if ((linha <= 9 && linha > 0) && (coluna <= 9 && coluna > 0)){
        if(mascara[linha-1][coluna-1] == 0){
            jogo[linha-1][coluna-1] = 0;
@@ -87,6 +85,7 @@ void removerJogada(int jogo[9][9], int mascara[9][9]){
 }
 
 void salvarJogo(int jogoSalvo[9][9], int jogoResolvido[9][9], int mascara[9][9]){
+
     FILE * savedGame;
     savedGame = fopen("savedGame.txt", "w");
 
@@ -126,16 +125,16 @@ void salvarJogo(int jogoSalvo[9][9], int jogoResolvido[9][9], int mascara[9][9])
         fprintf(savedGame, "\n");
     }
 
-    fclose(savedGame);
     printf("Jogo Salvo\n");
-
+    fclose(savedGame);
 }
-
 void adicionarJogada(int jogo[9][9], int mascara[9][9]){
+
     int linha,coluna,valor;
 
     printf("Digite a linha coluna e valor: ");
     scanf("%d %d %d", &linha, &coluna, &valor);
+
     if ((linha <= 9 && linha > 0) && (coluna <= 9 && coluna > 0) && (valor <=9 && valor > 0)){
        if(mascara[linha-1][coluna-1] == 0){
            jogo[linha-1][coluna-1] = valor;
@@ -147,15 +146,14 @@ void adicionarJogada(int jogo[9][9], int mascara[9][9]){
         printf("Posicao ou valor invalidos!\n");
         adicionarJogada(jogo, mascara);
     }
-
 } 
-
 void carregarJogo(int jogo[9][9], int mascara[9][9], int jogoResolvido[9][9], time_t start){
+
+    char c;
+
     FILE *jogoSalvo;
     jogoSalvo = fopen("savedGame.txt", "r");
 
-
-    char c;
     for(int i = 0; i < 9; i++){
         for(int j = 0; j < 9; j++){
             fscanf(jogoSalvo,"%c", &c);
@@ -230,6 +228,7 @@ void conferirJogo(int jogo[9][9], int jogoResolvido[9][9], time_t start){
     }
 }
 void printarTabuleiro(int tabuleiro[9][9]){
+
     int contadorCol = 0;
     int contadorLin = 0;
 
@@ -248,7 +247,6 @@ void printarTabuleiro(int tabuleiro[9][9]){
                 }
                 continue;
             }
-
             if(contadorCol == 3){
                 contadorCol = 1;
                 if( tabuleiro[i][j] == 0){
@@ -276,31 +274,25 @@ void printarTabuleiro(int tabuleiro[9][9]){
         }else{
             printf("\n+---+---+---+---+---+---+---+---+---+\n");
         }
-
         contadorLin ++;
     }
 }
-
 void criarMascara(int jogo[9][9], int mascara[9][9]){
+
     for(int i = 0; i < 9; i++){
         for(int j = 0; j < 9; j++){
             mascara[i][j] = jogo[i][j];
         }
     }
 }
-
 int main(){
     
     FILE *table;
 
-    int jogo[9][9];
-    int jogoResolvido[9][9];
-    int mascara[9][9];
-    time_t start = time(NULL); 
-    int randomNumber;
+    int mascara[9][9], jogo[9][9], jogoResolvido[9][9], randomNumber, opcaoMenuJogo;
     char nomeJogo[100];
 
-    int opcaoMenuJogo;
+    time_t start = time(NULL); 
 
     while(1){
 
@@ -323,6 +315,7 @@ int main(){
         }   
 
         do {
+
             printarTabuleiro(jogo);
             opcaoMenuJogo = menuJogada(jogo);
 
@@ -340,8 +333,8 @@ int main(){
                 case 4: //voltar
                 break;
                 case 5: //Conferir
-                    conferirJogo(jogo, jogoResolvido, start);
                     char c;
+                    conferirJogo(jogo, jogoResolvido, start);
                     setbuf(stdin,NULL);
                     scanf("%c" , &c);
                 break;
