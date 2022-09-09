@@ -10,8 +10,8 @@ Tarefa realizada na disciplina de Tópicos aplicados a computação, Ministrada 
 <p>
 
 Para se utilizar o programa o usuário deve possuir instalado em sua máquina, no caso de utilizar **Windows**, o compiliador da linguagem **C**, no caso o GCC. 
-Terminal basta executar o comando para compilar o programa ```gcc main.c -o sudoku ``` ,  para executar o programa ``` .\sudoku ``` e realizar as jogadas.
-No caso do **Linux** ```gcc main.c -o sudoku ```,  para executar o programa ``` ./sudoku ``` e realizar as jogadas.
+Terminal basta executar o comando para compilar o programa ```gcc main2.c -o sudoku ``` ,  para executar o programa ``` .\sudoku ``` e realizar as jogadas.
+No caso do **Linux** ```gcc main2.c -o sudoku ```,  para executar o programa ``` ./sudoku ``` e realizar as jogadas.
 </p>
  
 ## Funcionalidades 
